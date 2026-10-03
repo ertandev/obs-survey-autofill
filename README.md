@@ -1,42 +1,87 @@
+<p align="center">
+  <img src="assets/banner.png" alt="OBS Survey Auto-Filler Showcase" width="100%" style="border-radius: 16px; box-shadow: 0 20px 40px rgba(0,0,0,0.3);">
+</p>
+
 # OBS Survey Auto-Filler
 
 <p align="left">
   <img src="https://img.shields.io/badge/Manifest-V3-6366f1?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Manifest V3">
   <img src="https://img.shields.io/badge/Design-iOS%20Liquid%20Glass-0ea5e9?style=for-the-badge&logo=apple&logoColor=white" alt="Liquid Glass">
   <img src="https://img.shields.io/badge/Typography-Apple%20San%20Francisco-10b981?style=for-the-badge" alt="San Francisco">
+  <img src="https://img.shields.io/badge/Architecture-100%25%20Offline-3b82f6?style=for-the-badge" alt="Offline">
   <img src="https://img.shields.io/badge/License-MIT-f59e0b?style=for-the-badge" alt="License MIT">
 </p>
 
-An intelligent, distraction-free browser extension designed to effortlessly auto-fill university course and instructor evaluation surveys (OBS, EBS, BYS, and similar academic portals) in seconds.
+An intelligent, distraction-free browser extension designed to effortlessly auto-fill university course and faculty evaluation surveys (OBS, EBS, BYS, and similar academic portals) in seconds.
 
 Engineered with an **iOS Liquid Frosted Glass** interface, pure **hollow outline vector icons**, and native **Apple San Francisco typography**.
 
 ---
 
-## Key Capabilities
+## ✦ Key Capabilities
 
-- ✦ **Smart Realistic Mode (Human Bell Curve):**  
-  Employs contextual probability modeling rather than rigid straight-line scoring:
-  - **Workload & Time Commitment questions** (*ECTS workload, reading hours, exam preparation*): Authentically distributes ratings between **4** (~48%), **5** (~34%), and **3** (~18%).
-  - **Teaching & Instructor Quality questions**: Delivers high praise with mostly **5**s (~76%), natural **4**s (~20%), and occasional **3**s.
-  - Achieves an authentic **~4.68** overall score, preventing university quality audits from flagging automated straight-lining.
-- ★ **Straight 5s (All Perfect):** Instant maximum rating across all Likert items.
-- ↗ **High Achiever (80/20):** Natural 80% 5s / 20% 4s distribution.
-- ✓ **Solid 4s & ⇄ Randomize:** Flexible evaluation presets for every grading scenario.
-- ◆ **Context-Aware Drop-Down Detection:** Automatically scans `<select>` elements and chooses top-tier positive student responses (*"Çok Fazla"*, *"Fazlasıyla Yeterliydi"*).
-- ◆ **Bilingual Interface (English & Türkçe):** One-click language switcher (`TR` / `EN`) in both the floating widget and toolbar popup.
-- ◆ **Floating Pill Visibility Control:** Toggle the bottom-right launcher on or off; control evaluations entirely from the extension icon if preferred.
-- ◆ **iOS Liquid Glass Aesthetic:** Multi-layered translucent blur (`backdrop-filter: blur(32px)`), specular edge highlights, and smooth spring physics.
-- ◆ **100% Hollow Outline Vector Icons:** Pure line SVGs with 1.6px delicate stroke widths (zero consumer emojis).
-- ◆ **Persistent Dark & Light Themes:** Instant toggle between Slate Dark Glass and Crystal Frosted Light Glass.
+<table>
+  <tr>
+    <td width="50%">
+      <h3>🧠 Smart Realistic Mode</h3>
+      <p>Employs contextual probability modeling (Bell Curve) to distinguish between demanding workload questions and teaching quality. Prevents algorithmic flags for automated straight-lining while rewarding instructors.</p>
+    </td>
+    <td width="50%">
+      <h3>💧 iOS Liquid Glass Aesthetic</h3>
+      <p>Multi-layered translucent frosted glass (<code>backdrop-filter: blur(32px)</code>), specular edge reflections, tactile spring physics, and zero consumer emojis.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%">
+      <h3>🌐 Bilingual Interface (EN ⇄ TR)</h3>
+      <p>Instant one-click toggle between English and Turkish across all modal interfaces, toolbar popups, settings, and toast notifications.</p>
+    </td>
+    <td width="50%">
+      <h3>👁️ Floating Pill Visibility Control</h3>
+      <p>Freedom to hide or display the bottom-right launcher pill anytime. Control surveys directly from the browser toolbar if you prefer a clean canvas.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%">
+      <h3>✨ Context-Aware Drop-Downs</h3>
+      <p>Automatically scans student background and study hours drop-downs to select top-tier positive options (<em>"Çok Fazla"</em>, <em>"Fazlasıyla Yeterliydi"</em>).</p>
+    </td>
+    <td width="50%">
+      <h3>🌙 Persistent Dark & Light Themes</h3>
+      <p>Seamlessly toggle between Slate Dark Glass and Crystal Frosted Light Glass with persistent local synchronization.</p>
+    </td>
+  </tr>
+</table>
 
 ---
 
-## Strategy Matrix
+## ✦ Intelligent Evaluation Flow
+
+The diagram below outlines how the extension processes questions, analyzes context, and dispatches native browser events:
+
+```mermaid
+flowchart LR
+    A[🎓 University Portal] --> B{🔍 Form Parser}
+    B -->|Likert Radios| C[🧠 Context Analyzer]
+    B -->|Drop-downs| D[✨ Semantic Positive Filter]
+    
+    C -->|Workload / Difficulty| E[📊 Natural Variance: 4 / 5 / 3]
+    C -->|Teaching & Faculty| F[🌟 Maximum Praise: 5 / 4]
+    
+    D --> G[⚡ Event Dispatcher]
+    E --> G
+    F --> G
+    
+    G --> H[✅ Instant Verified Submission]
+```
+
+---
+
+## ✦ Strategy Matrix
 
 | Strategy | Glyph | Target Score | Distribution Characteristics | Recommended Use Case |
 | :--- | :---: | :---: | :--- | :--- |
-| **Smart Realistic** | ✦ | ~4.68 | Context-aware variance (Workload: 4/5/3; Teaching: 5/4) | **Standard Evaluations (Recommended)**. Resists automated anomaly filters while rewarding instructors. |
+| **Smart Realistic** | ✦ | ~4.68 | Context-aware variance (Workload: 4/5/3; Teaching: 5/4) | **Standard Evaluations (Recommended)**. Resists automated anomaly audits while giving instructors top marks. |
 | **Straight 5s** | ★ | 5.00 | 100% score of 5 on all Likert questions | Maximum positive feedback for exceptional educators. |
 | **High Achiever** | ↗ | ~4.80 | Uniform 80% 5s / 20% 4s split | High praise with light natural variance. |
 | **Solid 4s** | ✓ | 4.00 | Uniform score of 4 across all questions | Balanced, consistently positive evaluation. |
@@ -44,9 +89,9 @@ Engineered with an **iOS Liquid Frosted Glass** interface, pure **hollow outline
 
 ---
 
-## User Guide & Workflows
+## ✦ User Guide & Workflows
 
-Evaluating 8–10 courses at the end of each semester can take 30+ minutes of repetitive clicking. With OBS Survey Auto-Filler, you can complete all evaluations in under 60 seconds.
+Evaluating 8–10 courses at the end of each semester can take 30+ minutes of repetitive clicking. With OBS Survey Auto-Filler, you can complete all evaluations in under 60 seconds:
 
 ### 1. Open the Survey Form
 Log into your university's Student Information System (OBS, EBS, BYS, Proliz, etc.) and navigate to any active Course & Faculty Evaluation Survey.
@@ -71,7 +116,7 @@ Click any strategy button (e.g. **Smart Realistic** or **Straight 5s**). The ext
 
 ---
 
-## Installation
+## ✦ Installation
 
 ### Supported Browsers
 Google Chrome, Brave, Microsoft Edge, Opera, Vivaldi, and any Chromium-based browser.
@@ -91,7 +136,7 @@ Google Chrome, Brave, Microsoft Edge, Opera, Vivaldi, and any Chromium-based bro
 
 ---
 
-## Instant Console Script (Zero-Install)
+## ✦ Instant Console Script (Zero-Install)
 
 If you are using a university computer or cannot install extensions, paste this standalone script directly into your browser's developer console:
 
@@ -147,7 +192,7 @@ If you are using a university computer or cannot install extensions, paste this 
 
 ---
 
-## Frequently Asked Questions
+## ✦ Frequently Asked Questions
 
 <details>
 <summary><b>Will the university detect automated completion?</b></summary>
@@ -179,10 +224,12 @@ Uncheck <i>Show floating button on pages</i> in the panel settings or from the t
 
 ---
 
-## Repository Structure
+## ✦ Repository Structure
 
 ```
 obs-survey-autofill/
+├── assets/             # Showcase banners and graphic assets
+│   └── banner.png
 ├── manifest.json       # Manifest V3 configuration & permission schema
 ├── content.js          # Core evaluation engine, i18n & DOM dispatchers
 ├── content.css         # iOS Liquid Glass styling & San Francisco typography
@@ -194,6 +241,6 @@ obs-survey-autofill/
 
 ---
 
-## License
+## ✦ License
 
 This project is licensed under the [MIT License](LICENSE).
