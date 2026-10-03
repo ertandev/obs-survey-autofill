@@ -1,0 +1,477 @@
+/* Apple San Francisco Typography Enforcement */
+#obs-af-container,
+#obs-af-container *,
+#obs-af-container *::before,
+#obs-af-container *::after,
+#obs-af-container button,
+#obs-af-container span,
+#obs-af-container div,
+#obs-af-container label,
+#obs-af-container input {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "SF Pro", system-ui, sans-serif !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  text-rendering: optimizeLegibility !important;
+}
+
+/* ==========================================================================
+   OBS Survey Auto-Filler - iOS Liquid Glass (Pixel-Perfect Spacing & Layout)
+   ========================================================================== */
+
+#obs-af-container {
+  /* Light Theme */
+  --af-glass-bg: rgba(255, 255, 255, 0.85);
+  --af-glass-surface: rgba(241, 245, 249, 0.8);
+  --af-glass-surface-hover: rgba(255, 255, 255, 0.95);
+  --af-glass-border: rgba(226, 232, 240, 0.85);
+  --af-glass-border-subtle: rgba(226, 232, 240, 0.6);
+  --af-text: #0f172a;
+  --af-text-secondary: #475569;
+  --af-text-tertiary: #94a3b8;
+  --af-specular: inset 0 1px 1px 0 rgba(255, 255, 255, 0.9), inset 0 -1px 1px 0 rgba(0, 0, 0, 0.04);
+  --af-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.2), 0 10px 20px -6px rgba(15, 23, 42, 0.08);
+  --af-btn-glass: rgba(255, 255, 255, 0.75);
+  --af-btn-border: rgba(203, 213, 225, 0.7);
+  --af-launcher-bg: rgba(255, 255, 255, 0.88);
+  --af-launcher-text: #0f172a;
+  --af-launcher-border: rgba(203, 213, 225, 0.9);
+
+  position: fixed !important;
+  bottom: 24px !important;
+  right: 24px !important;
+  z-index: 2147483647 !important;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, sans-serif !important;
+  font-size: 13px !important;
+  line-height: 1.4 !important;
+  color: var(--af-text) !important;
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+}
+
+/* Dark Mode Tokens */
+#obs-af-container[data-theme="dark"] {
+  --af-glass-bg: rgba(15, 23, 42, 0.82);
+  --af-glass-surface: rgba(30, 41, 59, 0.65);
+  --af-glass-surface-hover: rgba(51, 65, 85, 0.75);
+  --af-glass-border: rgba(255, 255, 255, 0.14);
+  --af-glass-border-subtle: rgba(255, 255, 255, 0.08);
+  --af-text: #f8fafc;
+  --af-text-secondary: #cbd5e1;
+  --af-text-tertiary: #94a3b8;
+  --af-specular: inset 0 1px 1px 0 rgba(255, 255, 255, 0.22), inset 0 -1px 1px 0 rgba(0, 0, 0, 0.4);
+  --af-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.75), 0 12px 24px -8px rgba(0, 0, 0, 0.5);
+  --af-btn-glass: rgba(30, 41, 59, 0.65);
+  --af-btn-border: rgba(255, 255, 255, 0.12);
+  --af-launcher-bg: rgba(15, 23, 42, 0.85);
+  --af-launcher-text: #f8fafc;
+  --af-launcher-border: rgba(255, 255, 255, 0.18);
+}
+
+/* Strict Box-Sizing Isolation */
+#obs-af-container,
+#obs-af-container *,
+#obs-af-container *::before,
+#obs-af-container *::after {
+  box-sizing: border-box !important;
+}
+
+/* Clean Reset only on text tags - NEVER reset padding on * */
+#obs-af-container h1,
+#obs-af-container h2,
+#obs-af-container p,
+#obs-af-container ul,
+#obs-af-container li,
+#obs-af-container button,
+#obs-af-container input {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+}
+
+/* =========================================
+   Floating Launcher Pill
+   ========================================= */
+#obs-af-container .obs-af-launcher {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  height: 40px !important;
+  padding: 0 16px 0 12px !important;
+  border-radius: 9999px !important;
+  background: var(--af-launcher-bg) !important;
+  color: var(--af-launcher-text) !important;
+  border: 1px solid var(--af-launcher-border) !important;
+  box-shadow: 0 10px 25px -4px rgba(0, 0, 0, 0.25), var(--af-specular) !important;
+  backdrop-filter: blur(28px) saturate(190%) !important;
+  -webkit-backdrop-filter: blur(28px) saturate(190%) !important;
+  cursor: pointer !important;
+  user-select: none !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.01em !important;
+  transition: all 0.22s cubic-bezier(0.32, 0.72, 0, 1) !important;
+}
+
+#obs-af-container .obs-af-launcher:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 14px 30px -4px rgba(0, 0, 0, 0.3), var(--af-specular) !important;
+}
+
+#obs-af-container .obs-af-launcher:active {
+  transform: translateY(0) scale(0.97) !important;
+}
+
+#obs-af-container .obs-af-launcher .obs-af-icon {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 22px !important;
+  height: 22px !important;
+  border-radius: 50% !important;
+  border: 1px solid rgba(99, 102, 241, 0.4) !important;
+  background: rgba(99, 102, 241, 0.14) !important;
+  color: #818cf8 !important;
+}
+
+/* =========================================
+   Liquid Glass Main Modal Panel
+   ========================================= */
+#obs-af-container .obs-af-panel {
+  position: absolute !important;
+  bottom: 0 !important;
+  right: 0 !important;
+  width: 326px !important;
+  background: var(--af-glass-bg) !important;
+  border-radius: 22px !important;
+  box-shadow: var(--af-shadow) !important;
+  border: 1px solid var(--af-glass-border) !important;
+  backdrop-filter: blur(32px) saturate(200%) contrast(105%) !important;
+  -webkit-backdrop-filter: blur(32px) saturate(200%) contrast(105%) !important;
+  overflow: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+  animation: obs-af-pop 0.24s cubic-bezier(0.32, 0.72, 0, 1) !important;
+}
+
+#obs-af-container .obs-af-hidden {
+  display: none !important;
+}
+
+/* Header with Generous Padding */
+#obs-af-container .obs-af-header {
+  padding: 16px 18px 12px 18px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  border-bottom: 1px solid var(--af-glass-border-subtle) !important;
+  background: transparent !important;
+}
+
+#obs-af-container .obs-af-header-title {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  font-size: 13.5px !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.02em !important;
+  color: var(--af-text) !important;
+}
+
+#obs-af-container .obs-af-header-title .obs-af-mini-bolt {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 20px !important;
+  height: 20px !important;
+  border-radius: 6px !important;
+  border: 1px solid rgba(99, 102, 241, 0.4) !important;
+  background: rgba(99, 102, 241, 0.14) !important;
+  color: #818cf8 !important;
+}
+
+#obs-af-container .obs-af-badge {
+  font-size: 10px !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.04em !important;
+  background: rgba(16, 185, 129, 0.14) !important;
+  color: #10b981 !important;
+  padding: 2px 7px !important;
+  border-radius: 9999px !important;
+  border: 1px solid rgba(16, 185, 129, 0.3) !important;
+}
+
+#obs-af-container .obs-af-header-actions {
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+}
+
+#obs-af-container .obs-af-icon-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 28px !important;
+  height: 28px !important;
+  border-radius: 8px !important;
+  border: 1px solid var(--af-glass-border-subtle) !important;
+  background: var(--af-glass-surface) !important;
+  color: var(--af-text-secondary) !important;
+  cursor: pointer !important;
+  transition: all 0.18s cubic-bezier(0.32, 0.72, 0, 1) !important;
+}
+
+#obs-af-container .obs-af-icon-btn:hover {
+  background: var(--af-glass-surface-hover) !important;
+  color: var(--af-text) !important;
+  transform: scale(1.06) !important;
+}
+
+#obs-af-container .obs-af-icon-btn:active {
+  transform: scale(0.94) !important;
+}
+
+/* Body Container with Real Gutter Padding */
+#obs-af-container .obs-af-body {
+  padding: 14px 18px 18px 18px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
+}
+
+/* Status / Info Pill */
+#obs-af-container .obs-af-info {
+  display: flex !important;
+  align-items: center !important;
+  gap: 9px !important;
+  padding: 8px 12px !important;
+  border-radius: 11px !important;
+  font-size: 11.5px !important;
+  font-weight: 500 !important;
+  color: var(--af-text-secondary) !important;
+  background: var(--af-glass-surface) !important;
+  border: 1px solid var(--af-glass-border-subtle) !important;
+  line-height: 1.35 !important;
+  margin-bottom: 2px !important;
+}
+
+#obs-af-container .obs-af-info-dot {
+  width: 7px !important;
+  height: 7px !important;
+  border-radius: 50% !important;
+  background: #3b82f6 !important;
+  box-shadow: 0 0 6px rgba(59, 130, 246, 0.6) !important;
+  flex-shrink: 0 !important;
+}
+
+/* Options Grid with Proper Vertical Rhythm */
+#obs-af-container .obs-af-options {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 7px !important;
+}
+
+/* Individual Action Buttons - Never Touching Edges */
+#obs-af-container .obs-af-btn {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  width: 100% !important;
+  height: 40px !important;
+  padding: 0 13px !important;
+  border-radius: 12px !important;
+  border: 1px solid var(--af-btn-border) !important;
+  background: var(--af-btn-glass) !important;
+  color: var(--af-text) !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.01em !important;
+  cursor: pointer !important;
+  user-select: none !important;
+  box-shadow: var(--af-specular) !important;
+  transition: all 0.18s cubic-bezier(0.32, 0.72, 0, 1) !important;
+}
+
+#obs-af-container .obs-af-btn:hover {
+  background: var(--af-glass-surface-hover) !important;
+  border-color: rgba(99, 102, 241, 0.45) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.15), var(--af-specular) !important;
+}
+
+#obs-af-container .obs-af-btn:active {
+  transform: scale(0.98) !important;
+}
+
+#obs-af-container .obs-af-btn-label {
+  display: flex !important;
+  align-items: center !important;
+  gap: 9px !important;
+}
+
+#obs-af-container .obs-af-vector-icon {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 17px !important;
+  height: 17px !important;
+  color: var(--af-text-secondary) !important;
+  flex-shrink: 0 !important;
+}
+
+#obs-af-container .obs-af-btn:hover .obs-af-vector-icon {
+  color: var(--af-text) !important;
+}
+
+#obs-af-container .obs-af-btn-sub {
+  font-size: 10.5px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.02em !important;
+  padding: 2.5px 7.5px !important;
+  border-radius: 8px !important;
+  background: var(--af-glass-surface) !important;
+  color: var(--af-text-tertiary) !important;
+  border: 1px solid var(--af-glass-border-subtle) !important;
+  flex-shrink: 0 !important;
+}
+
+/* Featured: Smart Realistic Button */
+#obs-af-container .obs-af-btn-smart {
+  border: 1px solid rgba(99, 102, 241, 0.45) !important;
+  background: rgba(99, 102, 241, 0.14) !important;
+  color: var(--af-text) !important;
+}
+
+#obs-af-container .obs-af-btn-smart .obs-af-vector-icon {
+  color: #818cf8 !important;
+}
+
+#obs-af-container .obs-af-btn-smart:hover {
+  background: rgba(99, 102, 241, 0.22) !important;
+  border-color: rgba(99, 102, 241, 0.7) !important;
+}
+
+#obs-af-container .obs-af-btn-smart .obs-af-btn-sub {
+  background: rgba(99, 102, 241, 0.22) !important;
+  color: #818cf8 !important;
+  border: 1px solid rgba(99, 102, 241, 0.35) !important;
+}
+
+/* Featured: Straight 5s Button */
+#obs-af-container .obs-af-btn-primary {
+  border: 1px solid rgba(16, 185, 129, 0.45) !important;
+  background: rgba(16, 185, 129, 0.12) !important;
+  color: var(--af-text) !important;
+}
+
+#obs-af-container .obs-af-btn-primary .obs-af-vector-icon {
+  color: #10b981 !important;
+}
+
+#obs-af-container .obs-af-btn-primary:hover {
+  background: rgba(16, 185, 129, 0.2) !important;
+  border-color: rgba(16, 185, 129, 0.7) !important;
+}
+
+#obs-af-container .obs-af-btn-primary .obs-af-btn-sub {
+  background: rgba(16, 185, 129, 0.22) !important;
+  color: #10b981 !important;
+  border: 1px solid rgba(16, 185, 129, 0.35) !important;
+}
+
+/* Settings Checkboxes with Safe Bottom Margin */
+#obs-af-container .obs-af-settings {
+  border-top: 1px solid var(--af-glass-border-subtle) !important;
+  padding-top: 11px !important;
+  margin-top: 3px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 7px !important;
+}
+
+#obs-af-container .obs-af-checkbox-row {
+  display: flex !important;
+  align-items: center !important;
+  gap: 9px !important;
+  padding: 3px 0 !important;
+  font-size: 12px !important;
+  line-height: 1.4 !important;
+  color: var(--af-text-secondary) !important;
+  cursor: pointer !important;
+  user-select: none !important;
+  transition: color 0.15s ease !important;
+}
+
+#obs-af-container .obs-af-checkbox-row:hover {
+  color: var(--af-text) !important;
+}
+
+#obs-af-container .obs-af-checkbox-row input[type="checkbox"] {
+  width: 15px !important;
+  height: 15px !important;
+  margin: 0 !important;
+  cursor: pointer !important;
+  accent-color: #6366f1 !important;
+  border-radius: 4px !important;
+  flex-shrink: 0 !important;
+}
+
+/* Toast */
+.obs-af-toast {
+  position: fixed !important;
+  top: 24px !important;
+  right: 24px !important;
+  background: rgba(15, 23, 42, 0.88) !important;
+  color: #ffffff !important;
+  padding: 10px 18px !important;
+  border-radius: 9999px !important;
+  font-size: 12.5px !important;
+  font-weight: 500 !important;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4), var(--af-specular) !important;
+  z-index: 2147483647 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  backdrop-filter: blur(28px) !important;
+  -webkit-backdrop-filter: blur(28px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  animation: obs-af-toast-in 0.25s cubic-bezier(0.32, 0.72, 0, 1) !important;
+}
+
+/* Row Highlight Animation */
+.obs-af-highlight-row {
+  animation: obs-af-glow 1.2s ease-out !important;
+}
+
+@keyframes obs-af-glow {
+  0% { background-color: rgba(99, 102, 241, 0.25) !important; }
+  100% { background-color: transparent !important; }
+}
+
+@keyframes obs-af-pop {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes obs-af-toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
