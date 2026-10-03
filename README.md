@@ -1,53 +1,55 @@
 <p align="center">
-  <img src="assets/banner.png" alt="OBS Survey Auto-Filler Showcase" width="100%" style="border-radius: 16px; box-shadow: 0 20px 40px rgba(0,0,0,0.3);">
+  <img src="assets/banner.png" alt="OBS Survey Auto-Filler - Universal Chromium Extension" width="100%" style="border-radius: 14px; box-shadow: 0 16px 36px rgba(0,0,0,0.35);">
 </p>
 
 # OBS Survey Auto-Filler
 
 <p align="left">
   <img src="https://img.shields.io/badge/Manifest-V3-6366f1?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Manifest V3">
-  <img src="https://img.shields.io/badge/Design-iOS%20Liquid%20Glass-0ea5e9?style=for-the-badge&logo=apple&logoColor=white" alt="Liquid Glass">
-  <img src="https://img.shields.io/badge/Typography-Apple%20San%20Francisco-10b981?style=for-the-badge" alt="San Francisco">
+  <img src="https://img.shields.io/badge/Browsers-Chrome%20|%20Brave%20|%20Edge%20|%20Opera-0ea5e9?style=for-the-badge" alt="Chromium Browsers">
+  <img src="https://img.shields.io/badge/Platforms-Windows%20|%20macOS%20|%20Linux-10b981?style=for-the-badge" alt="Platforms">
   <img src="https://img.shields.io/badge/Architecture-100%25%20Offline-3b82f6?style=for-the-badge" alt="Offline">
   <img src="https://img.shields.io/badge/License-MIT-f59e0b?style=for-the-badge" alt="License MIT">
 </p>
 
-An intelligent, distraction-free browser extension designed to effortlessly auto-fill university course and faculty evaluation surveys (OBS, EBS, BYS, and similar academic portals) in seconds.
+An intelligent, distraction-free browser extension for all **Chromium-based browsers** (Google Chrome, Brave, Microsoft Edge, Opera, Vivaldi on Windows, macOS, and Linux). 
 
-Engineered with an **iOS Liquid Frosted Glass** interface, pure **hollow outline vector icons**, and native **Apple San Francisco typography**.
+Designed to effortlessly auto-fill university course and faculty evaluation surveys (OBS, EBS, BYS, Proliz, and similar academic portals) in seconds.
+
+Built with a modern frosted glass interface, hollow outline vector icons, and context-aware probabilistic evaluation.
 
 ---
 
-## ✦ Key Capabilities
+## Key Capabilities
 
 <table>
   <tr>
     <td width="50%">
-      <h3>🧠 Smart Realistic Mode</h3>
+      <h3>Smart Realistic Mode</h3>
       <p>Employs contextual probability modeling (Bell Curve) to distinguish between demanding workload questions and teaching quality. Prevents algorithmic flags for automated straight-lining while rewarding instructors.</p>
     </td>
     <td width="50%">
-      <h3>💧 iOS Liquid Glass Aesthetic</h3>
-      <p>Multi-layered translucent frosted glass (<code>backdrop-filter: blur(32px)</code>), specular edge reflections, tactile spring physics, and zero consumer emojis.</p>
+      <h3>Translucent Glass Aesthetic</h3>
+      <p>Multi-layered frosted glass (<code>backdrop-filter: blur(32px)</code>), specular edge reflections, tactile spring transitions, and minimalist vector line icons.</p>
     </td>
   </tr>
   <tr>
     <td width="50%">
-      <h3>🌐 Bilingual Interface (EN ⇄ TR)</h3>
+      <h3>Bilingual Interface (EN / TR)</h3>
       <p>Instant one-click toggle between English and Turkish across all modal interfaces, toolbar popups, settings, and toast notifications.</p>
     </td>
     <td width="50%">
-      <h3>👁️ Floating Pill Visibility Control</h3>
-      <p>Freedom to hide or display the bottom-right launcher pill anytime. Control surveys directly from the browser toolbar if you prefer a clean canvas.</p>
+      <h3>Context-Aware Auto-Detection</h3>
+      <p>The floating action pill only appears when an active survey is detected on the page. Completely invisible on regular websites and non-survey pages.</p>
     </td>
   </tr>
   <tr>
     <td width="50%">
-      <h3>✨ Context-Aware Drop-Downs</h3>
-      <p>Automatically scans student background and study hours drop-downs to select top-tier positive options (<em>"Çok Fazla"</em>, <em>"Fazlasıyla Yeterliydi"</em>).</p>
+      <h3>Intelligent Drop-Down Matching</h3>
+      <p>Automatically scans student background and study hours drop-downs to select top-tier positive options (<em>"Cok Fazla"</em>, <em>"Fazlasiyla Yeterliydi"</em>).</p>
     </td>
     <td width="50%">
-      <h3>🌙 Persistent Dark & Light Themes</h3>
+      <h3>Persistent Dark & Light Themes</h3>
       <p>Seamlessly toggle between Slate Dark Glass and Crystal Frosted Light Glass with persistent local synchronization.</p>
     </td>
   </tr>
@@ -55,50 +57,50 @@ Engineered with an **iOS Liquid Frosted Glass** interface, pure **hollow outline
 
 ---
 
-## ✦ Intelligent Evaluation Flow
+## Evaluation Flow
 
 The diagram below outlines how the extension processes questions, analyzes context, and dispatches native browser events:
 
 ```mermaid
 flowchart LR
-    A[🎓 University Portal] --> B{🔍 Form Parser}
-    B -->|Likert Radios| C[🧠 Context Analyzer]
-    B -->|Drop-downs| D[✨ Semantic Positive Filter]
+    A[University Portal] --> B{Form Parser}
+    B -->|Likert Radios| C[Context Analyzer]
+    B -->|Drop-downs| D[Semantic Positive Filter]
     
-    C -->|Workload / Difficulty| E[📊 Natural Variance: 4 / 5 / 3]
-    C -->|Teaching & Faculty| F[🌟 Maximum Praise: 5 / 4]
+    C -->|Workload / Difficulty| E[Natural Variance: 4 / 5 / 3]
+    C -->|Teaching & Faculty| F[Maximum Praise: 5 / 4]
     
-    D --> G[⚡ Event Dispatcher]
+    D --> G[Event Dispatcher]
     E --> G
     F --> G
     
-    G --> H[✅ Instant Verified Submission]
+    G --> H[Verified Submission]
 ```
 
 ---
 
-## ✦ Strategy Matrix
+## Strategy Matrix
 
-| Strategy | Glyph | Target Score | Distribution Characteristics | Recommended Use Case |
-| :--- | :---: | :---: | :--- | :--- |
-| **Smart Realistic** | ✦ | ~4.68 | Context-aware variance (Workload: 4/5/3; Teaching: 5/4) | **Standard Evaluations (Recommended)**. Resists automated anomaly audits while giving instructors top marks. |
-| **Straight 5s** | ★ | 5.00 | 100% score of 5 on all Likert questions | Maximum positive feedback for exceptional educators. |
-| **High Achiever** | ↗ | ~4.80 | Uniform 80% 5s / 20% 4s split | High praise with light natural variance. |
-| **Solid 4s** | ✓ | 4.00 | Uniform score of 4 across all questions | Balanced, consistently positive evaluation. |
-| **Randomize** | ⇄ | ~3.00 | Even random sampling between 1 and 5 | Testing or simulated mixed student feedback. |
+| Strategy | Target Score | Distribution Characteristics | Recommended Use Case |
+| :--- | :---: | :--- | :--- |
+| **Smart Realistic** | ~4.68 | Context-aware variance (Workload: 4/5/3; Teaching: 5/4) | **Standard Evaluations (Recommended)**. Resists automated anomaly audits while giving instructors top marks. |
+| **Straight 5s** | 5.00 | 100% score of 5 on all Likert questions | Maximum positive feedback for exceptional educators. |
+| **High Achiever** | ~4.80 | Uniform 80% 5s / 20% 4s split | High praise with light natural variance. |
+| **Solid 4s** | 4.00 | Uniform score of 4 across all questions | Balanced, consistently positive evaluation. |
+| **Randomize** | ~3.00 | Even random sampling between 1 and 5 | Testing or simulated mixed student feedback. |
 
 ---
 
-## ✦ User Guide & Workflows
+## User Guide & Workflows
 
 Evaluating 8–10 courses at the end of each semester can take 30+ minutes of repetitive clicking. With OBS Survey Auto-Filler, you can complete all evaluations in under 60 seconds:
 
 ### 1. Open the Survey Form
-Log into your university's Student Information System (OBS, EBS, BYS, Proliz, etc.) and navigate to any active Course & Faculty Evaluation Survey.
+Log into your university's Student Information System (OBS, EBS, BYS, Proliz, etc.) on any browser and navigate to any active Course & Faculty Evaluation Survey.
 
 ### 2. Launch the Auto-Fill Widget
 You have two convenient ways to access the controls:
-- **In-Page Floating Pill:** Click the translucent **Auto-Fill** pill in the bottom-right corner of your screen.
+- **In-Page Floating Pill:** Click the translucent **Auto-Fill** pill in the bottom-right corner of your screen (it only appears on active survey pages).
 - **Browser Toolbar Menu:** Click the extension icon in your browser's toolbar.
 
 ### 3. Select an Evaluation Strategy
@@ -116,10 +118,11 @@ Click any strategy button (e.g. **Smart Realistic** or **Straight 5s**). The ext
 
 ---
 
-## ✦ Installation
+## Installation
 
-### Supported Browsers
-Google Chrome, Brave, Microsoft Edge, Opera, Vivaldi, and any Chromium-based browser.
+### Supported Browsers & Operating Systems
+- **Browsers:** Google Chrome, Brave, Microsoft Edge, Opera, Vivaldi, Arc, and any Chromium-based browser.
+- **Platforms:** Windows 10/11, macOS, Linux, ChromeOS.
 
 ### Setup Instructions
 1. **Clone or Download** this repository:
@@ -129,18 +132,19 @@ Google Chrome, Brave, Microsoft Edge, Opera, Vivaldi, and any Chromium-based bro
 2. Open your browser's extensions management page:
    - **Chrome / Brave:** `chrome://extensions`
    - **Edge:** `edge://extensions`
+   - **Opera:** `opera://extensions`
 3. Enable **Developer mode** (toggle switch in the top-right corner).
 4. Click **Load unpacked** (button in the top-left corner).
-5. Select the `obs-survey-autofill` folder.
-6. Return to your university survey tab — the widget will activate automatically.
+5. Select the `obs-survey-autofill` folder on your computer.
+6. Open your university survey tab — the widget will activate automatically.
 
 ---
 
-## ✦ Instant Console Script (Zero-Install)
+## Instant Console Script (Zero-Install)
 
-If you are using a university computer or cannot install extensions, paste this standalone script directly into your browser's developer console:
+If you are using a university lab computer or cannot install extensions, paste this standalone script directly into your browser's developer console:
 
-1. Press `F12` (or right-click ➔ **Inspect**) and navigate to the **Console** tab.
+1. Press `F12` (or right-click and select **Inspect**) and navigate to the **Console** tab.
 2. Paste the snippet below and press `Enter`:
 
 ```javascript
@@ -192,7 +196,7 @@ If you are using a university computer or cannot install extensions, paste this 
 
 ---
 
-## ✦ Frequently Asked Questions
+## Frequently Asked Questions
 
 <details>
 <summary><b>Will the university detect automated completion?</b></summary>
@@ -224,7 +228,7 @@ Uncheck <i>Show floating button on pages</i> in the panel settings or from the t
 
 ---
 
-## ✦ Repository Structure
+## Repository Structure
 
 ```
 obs-survey-autofill/
@@ -232,7 +236,7 @@ obs-survey-autofill/
 │   └── banner.png
 ├── manifest.json       # Manifest V3 configuration & permission schema
 ├── content.js          # Core evaluation engine, i18n & DOM dispatchers
-├── content.css         # iOS Liquid Glass styling & San Francisco typography
+├── content.css         # Modern frosted glass styling & typography
 ├── popup.html          # Browser toolbar interface
 ├── popup.js            # Toolbar message controller & state sync
 ├── icons/              # Extension icons (16px, 48px, 128px)
@@ -241,6 +245,6 @@ obs-survey-autofill/
 
 ---
 
-## ✦ License
+## License
 
 This project is licensed under the [MIT License](LICENSE).
