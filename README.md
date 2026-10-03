@@ -5,11 +5,12 @@
 # OBS Survey Auto-Filler
 
 <p align="left">
-  <img src="https://img.shields.io/badge/Manifest-V3-6366f1?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Manifest V3">
-  <img src="https://img.shields.io/badge/Browsers-Chrome%20|%20Brave%20|%20Edge%20|%20Opera-0ea5e9?style=for-the-badge" alt="Chromium Browsers">
-  <img src="https://img.shields.io/badge/Platforms-Windows%20|%20macOS%20|%20Linux-10b981?style=for-the-badge" alt="Platforms">
-  <img src="https://img.shields.io/badge/Architecture-100%25%20Offline-3b82f6?style=for-the-badge" alt="Offline">
-  <img src="https://img.shields.io/badge/License-MIT-f59e0b?style=for-the-badge" alt="License MIT">
+  <img src="https://img.shields.io/badge/Manifest-V3-6366f1?style=flat-square&logo=googlechrome&logoColor=white" alt="Manifest V3">
+  <img src="https://img.shields.io/badge/Chrome-4285F4?style=flat-square&logo=googlechrome&logoColor=white" alt="Chrome">
+  <img src="https://img.shields.io/badge/Brave-FB542B?style=flat-square&logo=brave&logoColor=white" alt="Brave">
+  <img src="https://img.shields.io/badge/Edge-0078D7?style=flat-square&logo=microsoftedge&logoColor=white" alt="Edge">
+  <img src="https://img.shields.io/badge/Architecture-100%25%20Offline-10b981?style=flat-square" alt="Offline">
+  <img src="https://img.shields.io/badge/License-MIT-f59e0b?style=flat-square" alt="License MIT">
 </p>
 
 An intelligent, distraction-free browser extension for all **Chromium-based browsers** (Google Chrome, Brave, Microsoft Edge, Opera, Vivaldi on Windows, macOS, and Linux). 
@@ -20,36 +21,36 @@ Built with a modern frosted glass interface, hollow outline vector icons, and co
 
 ---
 
-## Key Capabilities
+## <img src="https://api.iconify.design/lucide:zap.svg?color=%23818cf8" width="20" height="20" align="center" /> Key Capabilities
 
 <table>
   <tr>
     <td width="50%">
-      <h3>Smart Realistic Mode</h3>
+      <h3><img src="https://api.iconify.design/lucide:brain-circuit.svg?color=%23818cf8" width="18" height="18" align="center" /> Smart Realistic Mode</h3>
       <p>Employs contextual probability modeling (Bell Curve) to distinguish between demanding workload questions and teaching quality. Prevents algorithmic flags for automated straight-lining while rewarding instructors.</p>
     </td>
     <td width="50%">
-      <h3>Translucent Glass Aesthetic</h3>
+      <h3><img src="https://api.iconify.design/lucide:layers.svg?color=%2338bdf8" width="18" height="18" align="center" /> Translucent Glass Aesthetic</h3>
       <p>Multi-layered frosted glass (<code>backdrop-filter: blur(32px)</code>), specular edge reflections, tactile spring transitions, and minimalist vector line icons.</p>
     </td>
   </tr>
   <tr>
     <td width="50%">
-      <h3>Bilingual Interface (EN / TR)</h3>
+      <h3><img src="https://api.iconify.design/lucide:languages.svg?color=%23a855f7" width="18" height="18" align="center" /> Bilingual Interface (EN / TR)</h3>
       <p>Instant one-click toggle between English and Turkish across all modal interfaces, toolbar popups, settings, and toast notifications.</p>
     </td>
     <td width="50%">
-      <h3>Context-Aware Auto-Detection</h3>
+      <h3><img src="https://api.iconify.design/lucide:eye.svg?color=%233b82f6" width="18" height="18" align="center" /> Context-Aware Auto-Detection</h3>
       <p>The floating action pill only appears when an active survey is detected on the page. Completely invisible on regular websites and non-survey pages.</p>
     </td>
   </tr>
   <tr>
     <td width="50%">
-      <h3>Intelligent Drop-Down Matching</h3>
-      <p>Automatically scans student background and study hours drop-downs to select top-tier positive options (<em>"Cok Fazla"</em>, <em>"Fazlasiyla Yeterliydi"</em>).</p>
+      <h3><img src="https://api.iconify.design/lucide:check-check.svg?color=%2310b981" width="18" height="18" align="center" /> Intelligent Drop-Down Matching</h3>
+      <p>Automatically scans student background and study hours drop-downs to select top-tier positive options (<em>"Çok Fazla"</em>, <em>"Fazlasıyla Yeterliydi"</em>).</p>
     </td>
     <td width="50%">
-      <h3>Persistent Dark & Light Themes</h3>
+      <h3><img src="https://api.iconify.design/lucide:moon-star.svg?color=%23f59e0b" width="18" height="18" align="center" /> Persistent Dark & Light Themes</h3>
       <p>Seamlessly toggle between Slate Dark Glass and Crystal Frosted Light Glass with persistent local synchronization.</p>
     </td>
   </tr>
@@ -57,7 +58,7 @@ Built with a modern frosted glass interface, hollow outline vector icons, and co
 
 ---
 
-## Evaluation Flow
+## <img src="https://api.iconify.design/lucide:git-merge.svg?color=%2338bdf8" width="20" height="20" align="center" /> Evaluation Flow
 
 The diagram below outlines how the extension processes questions, analyzes context, and dispatches native browser events:
 
@@ -79,19 +80,19 @@ flowchart LR
 
 ---
 
-## Strategy Matrix
+## <img src="https://api.iconify.design/lucide:sliders.svg?color=%2310b981" width="20" height="20" align="center" /> Strategy Matrix
 
-| Strategy | Target Score | Distribution Characteristics | Recommended Use Case |
-| :--- | :---: | :--- | :--- |
-| **Smart Realistic** | ~4.68 | Context-aware variance (Workload: 4/5/3; Teaching: 5/4) | **Standard Evaluations (Recommended)**. Resists automated anomaly audits while giving instructors top marks. |
-| **Straight 5s** | 5.00 | 100% score of 5 on all Likert questions | Maximum positive feedback for exceptional educators. |
-| **High Achiever** | ~4.80 | Uniform 80% 5s / 20% 4s split | High praise with light natural variance. |
-| **Solid 4s** | 4.00 | Uniform score of 4 across all questions | Balanced, consistently positive evaluation. |
-| **Randomize** | ~3.00 | Even random sampling between 1 and 5 | Testing or simulated mixed student feedback. |
+| Strategy | Icon | Target Score | Distribution Characteristics | Recommended Use Case |
+| :--- | :---: | :---: | :--- | :--- |
+| **Smart Realistic** | <img src="https://api.iconify.design/lucide:sparkles.svg?color=%23818cf8" width="16" height="16" /> | ~4.68 | Context-aware variance (Workload: 4/5/3; Teaching: 5/4) | **Standard Evaluations (Recommended)**. Resists automated anomaly audits while giving instructors top marks. |
+| **Straight 5s** | <img src="https://api.iconify.design/lucide:star.svg?color=%2310b981" width="16" height="16" /> | 5.00 | 100% score of 5 on all Likert questions | Maximum positive feedback for exceptional educators. |
+| **High Achiever** | <img src="https://api.iconify.design/lucide:trending-up.svg?color=%2338bdf8" width="16" height="16" /> | ~4.80 | Uniform 80% 5s / 20% 4s split | High praise with light natural variance. |
+| **Solid 4s** | <img src="https://api.iconify.design/lucide:check-circle-2.svg?color=%2394a3b8" width="16" height="16" /> | 4.00 | Uniform score of 4 across all questions | Balanced, consistently positive evaluation. |
+| **Randomize** | <img src="https://api.iconify.design/lucide:shuffle.svg?color=%23f59e0b" width="16" height="16" /> | ~3.00 | Even random sampling between 1 and 5 | Testing or simulated mixed student feedback. |
 
 ---
 
-## User Guide & Workflows
+## <img src="https://api.iconify.design/lucide:book-open.svg?color=%23a855f7" width="20" height="20" align="center" /> User Guide & Workflows
 
 Evaluating 8–10 courses at the end of each semester can take 30+ minutes of repetitive clicking. With OBS Survey Auto-Filler, you can complete all evaluations in under 60 seconds:
 
@@ -118,7 +119,7 @@ Click any strategy button (e.g. **Smart Realistic** or **Straight 5s**). The ext
 
 ---
 
-## Installation
+## <img src="https://api.iconify.design/lucide:download.svg?color=%2306b6d4" width="20" height="20" align="center" /> Installation
 
 ### Supported Browsers & Operating Systems
 - **Browsers:** Google Chrome, Brave, Microsoft Edge, Opera, Vivaldi, Arc, and any Chromium-based browser.
@@ -140,7 +141,7 @@ Click any strategy button (e.g. **Smart Realistic** or **Straight 5s**). The ext
 
 ---
 
-## Instant Console Script (Zero-Install)
+## <img src="https://api.iconify.design/lucide:terminal.svg?color=%23f59e0b" width="20" height="20" align="center" /> Instant Console Script (Zero-Install)
 
 If you are using a university lab computer or cannot install extensions, paste this standalone script directly into your browser's developer console:
 
@@ -196,7 +197,7 @@ If you are using a university lab computer or cannot install extensions, paste t
 
 ---
 
-## Frequently Asked Questions
+## <img src="https://api.iconify.design/lucide:help-circle.svg?color=%23ec4899" width="20" height="20" align="center" /> Frequently Asked Questions
 
 <details>
 <summary><b>Will the university detect automated completion?</b></summary>
@@ -228,7 +229,7 @@ Uncheck <i>Show floating button on pages</i> in the panel settings or from the t
 
 ---
 
-## Repository Structure
+## <img src="https://api.iconify.design/lucide:folder-tree.svg?color=%2364748b" width="20" height="20" align="center" /> Repository Structure
 
 ```
 obs-survey-autofill/
@@ -245,6 +246,6 @@ obs-survey-autofill/
 
 ---
 
-## License
+## <img src="https://api.iconify.design/lucide:shield.svg?color=%2310b981" width="20" height="20" align="center" /> License
 
 This project is licensed under the [MIT License](LICENSE).
