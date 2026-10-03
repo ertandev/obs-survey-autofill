@@ -112,8 +112,8 @@ obs-survey-autofill/
 ├── content.css         # iOS Liquid Glass design & typography tokens
 ├── popup.html          # Toolbar extension interface
 ├── popup.js            # Toolbar message bridge & theme controller
-├── generate_icons.py   # Minimalist hollow PNG icon generator
-└── icons/              # Extension icons (16px, 48px, 128px)
+├── icons/              # Extension icons (16px, 48px, 128px)
+└── scripts/            # Build & asset generation scripts
 ```
 
 ---
