@@ -7,7 +7,7 @@
   <img src="https://img.shields.io/badge/License-MIT-f59e0b?style=for-the-badge" alt="License MIT">
 </p>
 
-An intelligent, distraction-free browser extension designed to effortlessly auto-fill university course and instructor evaluation surveys (OBS, EBS, and similar academic portals) in seconds.
+An intelligent, distraction-free browser extension designed to effortlessly auto-fill university course and instructor evaluation surveys (OBS, EBS, BYS, and similar academic portals) in seconds.
 
 Built with an **iOS Liquid Frosted Glass** interface, pure **hollow outline vector icons**, and Apple's **San Francisco typography**.
 
@@ -17,7 +17,7 @@ Built with an **iOS Liquid Frosted Glass** interface, pure **hollow outline vect
 
 - **🧠 Smart Realistic Mode (Human Bell Curve):**
   Uses contextual natural probability distribution rather than rigid straight-line scoring:
-  - **Workload / Time Spent questions** (e.g. *ECTS workload, reading time, difficulty*): Authentically distributes ratings between **4** (~48%), **5** (~34%), and **3** (~18%).
+  - **Workload / Time Spent questions** (e.g. *ECTS workload, reading hours, exam preparation*): Authentically distributes ratings between **4** (~48%), **5** (~34%), and **3** (~18%).
   - **General Teaching & Instructor questions**: Scores mostly **5** (~76%), with natural **4**s (~20%) and occasional **3**s.
   - Generates an authentic **~4.68** overall score, preventing university algorithmic flags for automated straight-lining.
 - **🌟 Straight 5s:** Instant perfect score across all Likert items.
@@ -28,6 +28,44 @@ Built with an **iOS Liquid Frosted Glass** interface, pure **hollow outline vect
 - **✨ 100% Hollow Outline Icons:** Pure vector SVGs with 1.6px delicate stroke widths (zero consumer emojis).
 - **🌙 / ☀️ Instant Theme Switcher:** Fully customizable Dark and Light modes with persistent storage.
 - **⚡ In-Page Floating Quick-Action Pill:** Sleek launcher on the bottom-right for zero-friction evaluation across multiple courses.
+
+---
+
+## 📖 User Guide & How to Use
+
+Evaluating 8–10 courses every semester can take 30+ minutes of tedious clicking. Here is how to complete all evaluations in under 60 seconds:
+
+### Step 1: Open Your Survey Page
+Navigate to your university's Student Information System (OBS, EBS, BYS, Proliz, etc.) and open any Course & Instructor Evaluation Survey.
+
+### Step 2: Open the Auto-Fill Widget
+You have two quick ways to access the tool:
+- **In-Page Floating Pill (Recommended):** Look at the bottom-right corner of your screen for the floating **⚡ Auto-Fill** pill. Click it to expand the modal panel.
+- **Browser Toolbar Icon:** Alternatively, click the extension icon in your browser's extension bar.
+
+### Step 3: Choose Your Evaluation Preset
+
+| Preset | Icon | Description | Best Used For |
+| :--- | :---: | :--- | :--- |
+| **Smart Realistic** | ✦ | Context-aware human distribution (~75% 5s, ~20% 4s, ~5% 3s for workload) | **Everyday use (Recommended)**. Undetectable by university straight-line audit filters while giving instructors top marks. |
+| **Straight 5s** | ★ | 100% score of 5 on all Likert questions | When you want to give a beloved professor the absolute maximum score. |
+| **High Achiever** | ↗ | 80% 5s and 20% 4s distributed uniformly | High praise with light natural variation. |
+| **Solid 4s** | ✓ | Selects 4 on all Likert questions | A consistently positive, good evaluation. |
+| **Randomize** | ⇄ | Random ratings from 1 to 5 | Quick testing or simulated mixed feedback. |
+
+### Step 4: Configure Automation Toggles
+At the bottom of the panel, you will find two checkboxes:
+- **`Smart fill student drop-downs` (Enabled by default):**  
+  Scans all `<select>` elements (such as student background, hours spent, prior preparation) and automatically selects the most positive options (*"Çok Fazla"*, *"Fazlasıyla Yeterliydi"*).
+- **`Auto-click Save/Submit button`:**  
+  When enabled, the extension will automatically click the page's *"Save"* / *"Submit"* / *"Finish Evaluation"* button 500ms after filling, letting you blaze through consecutive courses with a single click.
+
+### Step 5: Visual Confirmation
+Once you click a preset, the extension will:
+1. Instantly check all radio buttons and select all drop-down values.
+2. Trigger native DOM events (`input`, `change`, `click`) so modern web frameworks (React, Angular, ASP.NET, jQuery) register the form updates.
+3. Flash each filled row with a brief soft glow animation so you can visually verify that nothing was missed.
+4. Display a clean confirmation toast stating the exact number of filled items.
 
 ---
 
@@ -42,14 +80,14 @@ Built with an **iOS Liquid Frosted Glass** interface, pure **hollow outline vect
    - **Edge:** `edge://extensions`
 3. Toggle on **Developer mode** in the top-right corner.
 4. Click **Load unpacked** in the top-left corner.
-5. Select the `obs-survey-autofill` folder.
-6. Navigate to any university survey page — the **⚡ Auto-Fill** pill will appear automatically on the bottom-right corner!
+5. Select the `obs-survey-autofill` folder on your computer.
+6. Open your university portal — the floating **⚡ Auto-Fill** pill will appear automatically!
 
 ---
 
-## ⚡ Instant Console One-Liner (No Extension Needed)
+## ⚡ Instant Console One-Liner (Zero-Install Bookmarklet)
 
-If you need to fill a survey immediately without installing the extension:
+If you are on a public computer or do not want to install an extension, you can run this one-liner directly in DevTools:
 
 1. Press `F12` (or right-click ➔ **Inspect**) and open the **Console** tab.
 2. Paste the following script and hit `Enter`:
@@ -103,6 +141,38 @@ If you need to fill a survey immediately without installing the extension:
 
 ---
 
+## ❓ Frequently Asked Questions (FAQ)
+
+<details>
+<summary><b>1. Will my university notice that I used an automated tool?</b></summary>
+<p>
+If you use <b>Smart Realistic</b> mode, no. Unlike naive scripts that blindly fill all 5s in 1 millisecond, Smart Realistic mode contextualizes questions: workload and time-investment questions are rated with authentic variation (mostly 4s, some 5s, occasional 3s), while instructor delivery is rated with high praise (mostly 5s). The resulting statistical distribution matches genuine human feedback.
+</p>
+</details>
+
+<details>
+<summary><b>2. Is any of my student data sent anywhere?</b></summary>
+<p>
+Absolutely not. The extension operates 100% locally on your machine. There are no analytics, no external servers, no tracking, and no external dependencies. You can verify every single line of code in <code>content.js</code>.
+</p>
+</details>
+
+<details>
+<summary><b>3. What if my university portal puts rating 1 on the left and 5 on the right?</b></summary>
+<p>
+The extension first inspects the input values and adjacent label text (looking for explicit digits <code>1</code> through <code>5</code>). It automatically maps to the correct score regardless of column ordering.
+</p>
+</details>
+
+<details>
+<summary><b>4. What if the floating button doesn't appear?</b></summary>
+<p>
+Simply click the extension's icon in your browser's toolbar, or refresh the page with <code>F5</code>. Make sure the extension is enabled in <code>chrome://extensions</code>.
+</p>
+</details>
+
+---
+
 ## 📂 Project Architecture
 
 ```
@@ -120,4 +190,4 @@ obs-survey-autofill/
 
 ## 🛡️ License
 
-This project is licensed under the [MIT License](LICENSE).
+This project is open-source and available under the [MIT License](LICENSE).
