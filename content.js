@@ -99,6 +99,7 @@
 
   const MODERATE_KEYWORDS = ['orta', 'ortalama', 'kısmen', 'kararsızım', 'fark etmez'];
   const WORKLOAD_KEYWORDS = ['iş yükü', 'zaman', 'çalışma', 'saat', 'okuma', 'akts', 'ödev', 'zorluk', 'tekrar'];
+  const SURVEY_PAGE_KEYWORDS = ['değerlendirme', 'anket', 'katılıyorum', 'evaluation', 'survey', 'öğretim elemanı', 'dersin amacı'];
 
   let settings = {
     fillDropdowns: true,
@@ -107,7 +108,7 @@
     highlight: true,
     showFloating: true,
     theme: 'dark',
-    lang: 'tr' // Default language
+    lang: 'tr'
   };
 
   // Load saved settings
@@ -117,6 +118,7 @@
         settings = { ...settings, ...result.obs_settings };
       }
       applySettings();
+      updateWidgetVisibility();
     });
   }
 
@@ -139,7 +141,8 @@
         sendResponse({ success: true, lang: settings.lang });
       } else if (request.action === 'SET_FLOATING') {
         settings.showFloating = request.showFloating;
-        applySettings();
+        saveSettings();
+        updateWidgetVisibility();
         sendResponse({ success: true, showFloating: settings.showFloating });
       }
       return true;
@@ -147,6 +150,9 @@
   }
 
   injectUI();
+
+  // Real-time DOM watcher for dynamic/AJAX loaded surveys
+  setupDynamicSurveyWatcher();
 
   function t(key, params = {}) {
     const dict = I18N[settings.lang] || I18N.en;
@@ -157,12 +163,84 @@
     return text;
   }
 
-  function applySettings() {
+  /**
+   * High-Confidence Survey Page Detection
+   * Evaluates form elements and semantic keywords
+   */
+  function isSurveyPage() {
+    const stats = detectFormStats();
+
+    // Condition A: Standard evaluation page with multiple Likert radio questions
+    if (stats.radioGroupsCount >= 2) return true;
+
+    // Condition B: Mixed survey with at least 1 radio question and 1 dropdown
+    if (stats.radioGroupsCount >= 1 && stats.selectsCount >= 1) return true;
+
+    // Condition C: Semantic keyword verification for AJAX / Tabbed forms
+    const bodyText = (document.body ? document.body.innerText : '').toLowerCase();
+    const hasKeywords = SURVEY_PAGE_KEYWORDS.some((kw) => bodyText.includes(kw));
+
+    if (hasKeywords && (stats.radioGroupsCount >= 1 || stats.selectsCount >= 2)) {
+      return true;
+    }
+
+    return false;
+  }
+
+  /**
+   * Updates widget visibility based on survey presence and user settings
+   */
+  function updateWidgetVisibility() {
     const container = document.getElementById('obs-af-container');
     if (!container) return;
 
-    // Visibility
-    container.style.display = settings.showFloating ? 'block' : 'none';
+    // If user explicitly disabled floating pill in settings, stay hidden
+    if (!settings.showFloating) {
+      container.style.display = 'none';
+      return;
+    }
+
+    // Only display if an active survey form is detected on the current page
+    const surveyPresent = isSurveyPage();
+    if (surveyPresent) {
+      container.style.display = 'block';
+      updateStats();
+    } else {
+      // Hide on non-survey pages (e.g. Google, YouTube, or OBS dashboard home)
+      container.style.display = 'none';
+    }
+  }
+
+  /**
+   * MutationObserver to detect dynamically rendered surveys (AJAX, Single Page Apps, Tab clicks)
+   */
+  function setupDynamicSurveyWatcher() {
+    let debounceTimer = null;
+
+    const observer = new MutationObserver(() => {
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(() => {
+        updateWidgetVisibility();
+      }, 250);
+    });
+
+    if (document.body) {
+      observer.observe(document.body, { childList: true, subtree: true });
+    } else {
+      document.addEventListener('DOMContentLoaded', () => {
+        observer.observe(document.body, { childList: true, subtree: true });
+      });
+    }
+
+    // Scheduled checks for asynchronous network responses
+    setTimeout(updateWidgetVisibility, 500);
+    setTimeout(updateWidgetVisibility, 1500);
+    setTimeout(updateWidgetVisibility, 3000);
+  }
+
+  function applySettings() {
+    const container = document.getElementById('obs-af-container');
+    if (!container) return;
 
     // Theme
     container.setAttribute('data-theme', settings.theme);
@@ -529,9 +607,8 @@
     const container = document.createElement('div');
     container.id = 'obs-af-container';
     container.setAttribute('data-theme', settings.theme);
-    if (!settings.showFloating) {
-      container.style.display = 'none';
-    }
+    // Initially hidden until isSurveyPage() evaluates to true
+    container.style.display = 'none';
 
     container.innerHTML = `
       <!-- Launcher Pill -->
@@ -690,5 +767,6 @@
     });
 
     applySettings();
+    updateWidgetVisibility();
   }
 })();
