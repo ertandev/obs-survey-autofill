@@ -42,7 +42,7 @@
     }
 
     body {
-      width: 318px;
+      width: 320px;
       background: var(--bg);
       color: var(--text);
       padding: 0;
@@ -83,14 +83,32 @@
       letter-spacing: -0.02em;
     }
 
-    .badge {
-      font-size: 9.5px;
-      background: rgba(16, 185, 129, 0.12);
-      color: #10b981;
-      padding: 1.5px 6.5px;
-      border-radius: 9999px;
-      font-weight: 600;
-      border: 1px solid rgba(16, 185, 129, 0.3);
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .lang-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 26px;
+      padding: 0 7px;
+      border-radius: 7px;
+      border: 1px solid var(--border-subtle);
+      background: var(--surface);
+      color: var(--text-muted);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      transition: all 0.18s cubic-bezier(0.32, 0.72, 0, 1);
+    }
+
+    .lang-btn:hover {
+      color: var(--text);
+      transform: scale(1.05);
     }
 
     .theme-btn {
@@ -98,9 +116,9 @@
       border: 1px solid var(--border-subtle);
       color: var(--text-muted);
       cursor: pointer;
-      width: 27px;
-      height: 27px;
-      border-radius: 8px;
+      width: 26px;
+      height: 26px;
+      border-radius: 7px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -241,6 +259,31 @@
       border: 1px solid rgba(16, 185, 129, 0.3);
     }
 
+    .settings-group {
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 8px;
+      margin-top: 2px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .checkbox-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11.5px;
+      color: var(--text-muted);
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .checkbox-row input {
+      width: 14px;
+      height: 14px;
+      cursor: pointer;
+      accent-color: #6366f1;
+    }
   </style>
 </head>
 <body data-theme="dark">
@@ -249,10 +292,10 @@
       <div class="icon-wrap">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
       </div>
-      <h1>Survey Auto-Filler</h1>
+      <h1 id="popup-title">Survey Auto-Filler</h1>
     </div>
-    <div style="display:flex; align-items:center; gap:6px;">
-      <span class="badge">v1.4</span>
+    <div class="header-actions">
+      <button class="lang-btn" id="popup-lang-toggle" title="Türkçe / English">TR</button>
       <button class="theme-btn" id="popup-theme-toggle" title="Toggle Theme">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
       </button>
@@ -271,9 +314,9 @@
           <span class="vector-icon">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3L12 3z"/><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/></svg>
           </span>
-          <span>Smart Realistic</span>
+          <span id="lbl-smart">Smart Realistic</span>
         </span>
-        <span class="btn-sub">Bell Curve</span>
+        <span class="btn-sub" id="sub-smart">Bell Curve</span>
       </button>
 
       <button class="btn btn-primary" id="btn-all5">
@@ -281,9 +324,9 @@
           <span class="vector-icon">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
           </span>
-          <span>Straight 5s</span>
+          <span id="lbl-all5">Straight 5s</span>
         </span>
-        <span class="btn-sub">All 5</span>
+        <span class="btn-sub" id="sub-all5">All 5</span>
       </button>
 
       <button class="btn" id="btn-natural">
@@ -291,9 +334,9 @@
           <span class="vector-icon">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
           </span>
-          <span>High Achiever</span>
+          <span id="lbl-natural">High Achiever</span>
         </span>
-        <span class="btn-sub">80/20</span>
+        <span class="btn-sub" id="sub-natural">80/20</span>
       </button>
 
       <button class="btn" id="btn-all4">
@@ -301,9 +344,9 @@
           <span class="vector-icon">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
           </span>
-          <span>Solid 4s</span>
+          <span id="lbl-all4">Solid 4s</span>
         </span>
-        <span class="btn-sub">All 4</span>
+        <span class="btn-sub" id="sub-all4">All 4</span>
       </button>
 
       <button class="btn" id="btn-random">
@@ -311,10 +354,17 @@
           <span class="vector-icon">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 18h1.4c1.3 0 2.5-.6 3.3-1.7l6.6-8.6c.8-1.1 2-1.7 3.3-1.7H22"/><path d="m18 2 4 4-4 4"/><path d="M2 6h1.4c1.3 0 2.5.6 3.3 1.7l1.7 2.2"/><path d="M14.6 13.9l2.1 2.4c.8 1.1 2 1.7 3.3 1.7H22"/><path d="m18 14 4 4-4 4"/></svg>
           </span>
-          <span>Randomize</span>
+          <span id="lbl-random">Randomize</span>
         </span>
-        <span class="btn-sub">1 - 5</span>
+        <span class="btn-sub" id="sub-random">1 - 5</span>
       </button>
+    </div>
+
+    <div class="settings-group">
+      <label class="checkbox-row">
+        <input type="checkbox" id="popup-opt-floating" checked>
+        <span id="lbl-opt-floating">Show floating button on pages</span>
+      </label>
     </div>
   </div>
 

@@ -26,6 +26,8 @@ Built with an **iOS Liquid Frosted Glass** interface, pure **hollow outline vect
 - **🧠 Drop-Down Intelligence:** Intelligently identifies and selects the most positive student responses (*"Çok Fazla"*, *"Fazlasıyla Yeterliydi"*).
 - **💧 iOS Liquid Glass Aesthetic:** Multi-layered translucent blur (`backdrop-filter: blur(32px)`), specular edge highlights, and smooth spring physics.
 - **✨ 100% Hollow Outline Icons:** Pure vector SVGs with 1.6px delicate stroke widths (zero consumer emojis).
+- **🌐 Instant Language Switcher (EN ⇄ TR):** One-click toggle between English and Turkish across all UI elements and notifications.
+- **👁️ Floating Pill Visibility Toggle:** Freedom to hide the bottom-right floating pill anytime; control surveys entirely from the toolbar popup if preferred.
 - **🌙 / ☀️ Instant Theme Switcher:** Fully customizable Dark and Light modes with persistent storage.
 - **⚡ In-Page Floating Quick-Action Pill:** Sleek launcher on the bottom-right for zero-friction evaluation across multiple courses.
 

@@ -20,6 +20,62 @@
     close: `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>`
   };
 
+  // Translations
+  const I18N = {
+    en: {
+      launcher: 'Auto-Fill',
+      title: 'Survey Auto-Filler',
+      scanning: 'Scanning page...',
+      found: 'Found <b>{r}</b> ratings & <b>{s}</b> drop-downs.',
+      notFound: 'No survey questions found on this page.',
+      smart: 'Smart Realistic',
+      smart_sub: 'Bell Curve',
+      all5: 'Straight 5s',
+      all5_sub: 'All 5',
+      natural: 'High Achiever',
+      natural_sub: '80/20',
+      all4: 'Solid 4s',
+      all4_sub: 'All 4',
+      random: 'Randomize',
+      random_sub: '1 - 5',
+      opt_dropdowns: 'Smart fill student drop-downs',
+      opt_autosave: 'Auto-click Save/Submit button',
+      opt_floating: 'Show floating button on pages',
+      saving: 'Saving survey responses...',
+      toast_success: '{n} questions filled successfully',
+      toast_hidden: 'Floating button hidden. Enable anytime from toolbar menu.',
+      theme_light: 'Switch to Light Mode',
+      theme_dark: 'Switch to Dark Mode',
+      lang_btn: 'TR'
+    },
+    tr: {
+      launcher: 'Anketi Doldur',
+      title: 'OBS Anket Doldurucu',
+      scanning: 'Sayfa taranıyor...',
+      found: 'Sayfada <b>{r}</b> puanlama & <b>{s}</b> açılır kutu bulundu.',
+      notFound: 'Bu sayfada anket sorusu bulunamadı.',
+      smart: 'Akıllı Gerçekçi',
+      smart_sub: 'Gauss Dağılımı',
+      all5: 'Hepsine 5 Ver',
+      all5_sub: 'Tam Puan',
+      natural: 'Dengeli Başarı',
+      natural_sub: '80/20 Oran',
+      all4: 'Hepsine 4 Ver',
+      all4_sub: 'Tümü 4',
+      random: 'Rastgele Doldur',
+      random_sub: '1 - 5 Karışık',
+      opt_dropdowns: 'Öğrenci açılır kutularını doldur',
+      opt_autosave: 'Otomatik Kaydet butonuna bas',
+      opt_floating: 'Sayfada yüzen butonu göster',
+      saving: 'Cevaplar kaydediliyor...',
+      toast_success: '{n} anket sorusu başarıyla dolduruldu',
+      toast_hidden: 'Yüzen buton gizlendi. İstediğinde araç çubuğundan açabilirsin.',
+      theme_light: 'Açık Temaya Geç',
+      theme_dark: 'Koyu Temaya Geç',
+      lang_btn: 'EN'
+    }
+  };
+
   const POSITIVE_KEYWORDS_TIER1 = [
     'çok fazla',
     'fazlasıyla yeterliydi',
@@ -49,7 +105,9 @@
     leftIsFive: true,
     autoSave: false,
     highlight: true,
-    theme: 'dark'
+    showFloating: true,
+    theme: 'dark',
+    lang: 'tr' // Default language
   };
 
   // Load saved settings
@@ -58,7 +116,7 @@
       if (result && result.obs_settings) {
         settings = { ...settings, ...result.obs_settings };
       }
-      applyTheme(settings.theme);
+      applySettings();
     });
   }
 
@@ -73,8 +131,16 @@
         sendResponse(stats);
       } else if (request.action === 'SET_THEME') {
         settings.theme = request.theme;
-        applyTheme(settings.theme);
+        applySettings();
         sendResponse({ success: true, theme: settings.theme });
+      } else if (request.action === 'SET_LANG') {
+        settings.lang = request.lang;
+        applySettings();
+        sendResponse({ success: true, lang: settings.lang });
+      } else if (request.action === 'SET_FLOATING') {
+        settings.showFloating = request.showFloating;
+        applySettings();
+        sendResponse({ success: true, showFloating: settings.showFloating });
       }
       return true;
     });
@@ -82,15 +148,82 @@
 
   injectUI();
 
-  function applyTheme(theme) {
+  function t(key, params = {}) {
+    const dict = I18N[settings.lang] || I18N.en;
+    let text = dict[key] || I18N.en[key] || key;
+    for (const [k, v] of Object.entries(params)) {
+      text = text.replace(new RegExp(`\\{${k}\\}`, 'g'), v);
+    }
+    return text;
+  }
+
+  function applySettings() {
     const container = document.getElementById('obs-af-container');
     if (!container) return;
-    container.setAttribute('data-theme', theme);
+
+    // Visibility
+    container.style.display = settings.showFloating ? 'block' : 'none';
+
+    // Theme
+    container.setAttribute('data-theme', settings.theme);
     const themeBtn = document.getElementById('obs-af-theme-toggle');
     if (themeBtn) {
-      themeBtn.innerHTML = theme === 'dark' ? ICONS.sun : ICONS.moon;
-      themeBtn.title = theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode';
+      themeBtn.innerHTML = settings.theme === 'dark' ? ICONS.sun : ICONS.moon;
+      themeBtn.title = settings.theme === 'dark' ? t('theme_light') : t('theme_dark');
     }
+
+    // Language Button
+    const langBtn = document.getElementById('obs-af-lang-toggle');
+    if (langBtn) {
+      langBtn.innerText = t('lang_btn');
+      langBtn.title = settings.lang === 'en' ? 'Türkçe\'ye Geç' : 'Switch to English';
+    }
+
+    // Update Text Content
+    const launcherText = document.getElementById('obs-af-launcher-text');
+    if (launcherText) launcherText.innerText = t('launcher');
+
+    const titleText = document.getElementById('obs-af-title-text');
+    if (titleText) titleText.innerText = t('title');
+
+    const txtSmart = document.getElementById('txt-btn-smart');
+    if (txtSmart) txtSmart.innerText = t('smart');
+    const subSmart = document.getElementById('sub-btn-smart');
+    if (subSmart) subSmart.innerText = t('smart_sub');
+
+    const txtAll5 = document.getElementById('txt-btn-all5');
+    if (txtAll5) txtAll5.innerText = t('all5');
+    const subAll5 = document.getElementById('sub-btn-all5');
+    if (subAll5) subAll5.innerText = t('all5_sub');
+
+    const txtNatural = document.getElementById('txt-btn-natural');
+    if (txtNatural) txtNatural.innerText = t('natural');
+    const subNatural = document.getElementById('sub-btn-natural');
+    if (subNatural) subNatural.innerText = t('natural_sub');
+
+    const txtAll4 = document.getElementById('txt-btn-all4');
+    if (txtAll4) txtAll4.innerText = t('all4');
+    const subAll4 = document.getElementById('sub-btn-all4');
+    if (subAll4) subAll4.innerText = t('all4_sub');
+
+    const txtRandom = document.getElementById('txt-btn-random');
+    if (txtRandom) txtRandom.innerText = t('random');
+    const subRandom = document.getElementById('sub-btn-random');
+    if (subRandom) subRandom.innerText = t('random_sub');
+
+    const txtOptDropdowns = document.getElementById('txt-opt-dropdowns');
+    if (txtOptDropdowns) txtOptDropdowns.innerText = t('opt_dropdowns');
+
+    const txtOptAutosave = document.getElementById('txt-opt-autosave');
+    if (txtOptAutosave) txtOptAutosave.innerText = t('opt_autosave');
+
+    const txtOptFloating = document.getElementById('txt-opt-floating');
+    if (txtOptFloating) txtOptFloating.innerText = t('opt_floating');
+
+    const optFloating = document.getElementById('obs-opt-floating');
+    if (optFloating) optFloating.checked = settings.showFloating;
+
+    updateStats();
   }
 
   function detectFormStats() {
@@ -101,6 +234,24 @@
       selectsCount: selects.length,
       totalQuestions: radioGroups.length + selects.length
     };
+  }
+
+  function updateStats() {
+    const statsText = document.getElementById('obs-af-stats-text');
+    if (!statsText) return;
+
+    const stats = detectFormStats();
+    if (stats.totalQuestions > 0) {
+      statsText.innerHTML = `
+        <span class="obs-af-info-dot" style="background:#10b981;"></span>
+        <span>${t('found', { r: stats.radioGroupsCount, s: stats.selectsCount })}</span>
+      `;
+    } else {
+      statsText.innerHTML = `
+        <span class="obs-af-info-dot" style="background:#f59e0b;"></span>
+        <span>${t('notFound')}</span>
+      `;
+    }
   }
 
   function getRadioGroups() {
@@ -320,7 +471,7 @@
       }, 500);
     }
 
-    showToast(`${filledCount} questions filled successfully`);
+    showToast(t('toast_success', { n: filledCount }));
 
     return {
       success: true,
@@ -344,7 +495,7 @@
     });
 
     if (saveBtn) {
-      showToast('Saving survey responses...');
+      showToast(t('saving'));
       saveBtn.click();
     }
   }
@@ -366,18 +517,27 @@
     }, 2800);
   }
 
+  function saveSettings() {
+    if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.local) {
+      chrome.storage.local.set({ obs_settings: settings });
+    }
+  }
+
   function injectUI() {
     if (document.getElementById('obs-af-container')) return;
 
     const container = document.createElement('div');
     container.id = 'obs-af-container';
     container.setAttribute('data-theme', settings.theme);
+    if (!settings.showFloating) {
+      container.style.display = 'none';
+    }
 
     container.innerHTML = `
-      <!-- Liquid Glass Launcher Pill -->
+      <!-- Launcher Pill -->
       <div class="obs-af-launcher" id="obs-af-launcher-btn" title="OBS Survey Auto-Filler">
         <span class="obs-af-icon">${ICONS.bolt}</span>
-        <span>Auto-Fill</span>
+        <span id="obs-af-launcher-text">${t('launcher')}</span>
       </div>
 
       <!-- Liquid Glass Panel -->
@@ -385,10 +545,13 @@
         <div class="obs-af-header">
           <div class="obs-af-header-title">
             <span class="obs-af-mini-bolt">${ICONS.bolt}</span>
-            <span>Survey Auto-Filler</span>
-            <span class="obs-af-badge">v1.4</span>
+            <span id="obs-af-title-text">${t('title')}</span>
+            <span class="obs-af-badge">v1.5</span>
           </div>
           <div class="obs-af-header-actions">
+            <button class="obs-af-lang-btn" id="obs-af-lang-toggle" title="Türkçe / English">
+              ${t('lang_btn')}
+            </button>
             <button class="obs-af-icon-btn" id="obs-af-theme-toggle" title="Toggle Theme">
               ${settings.theme === 'dark' ? ICONS.sun : ICONS.moon}
             </button>
@@ -399,59 +562,63 @@
         <div class="obs-af-body">
           <div class="obs-af-info" id="obs-af-stats-text">
             <span class="obs-af-info-dot"></span>
-            <span>Scanning page...</span>
+            <span>${t('scanning')}</span>
           </div>
 
           <div class="obs-af-options">
             <button class="obs-af-btn obs-af-btn-smart" data-mode="smart">
               <span class="obs-af-btn-label">
                 <span class="obs-af-vector-icon">${ICONS.sparkle}</span>
-                <span>Smart Realistic</span>
+                <span id="txt-btn-smart">${t('smart')}</span>
               </span>
-              <span class="obs-af-btn-sub">Bell Curve</span>
+              <span class="obs-af-btn-sub" id="sub-btn-smart">${t('smart_sub')}</span>
             </button>
 
             <button class="obs-af-btn obs-af-btn-primary" data-mode="all5">
               <span class="obs-af-btn-label">
                 <span class="obs-af-vector-icon">${ICONS.star}</span>
-                <span>Straight 5s</span>
+                <span id="txt-btn-all5">${t('all5')}</span>
               </span>
-              <span class="obs-af-btn-sub">All 5</span>
+              <span class="obs-af-btn-sub" id="sub-btn-all5">${t('all5_sub')}</span>
             </button>
 
             <button class="obs-af-btn" data-mode="natural">
               <span class="obs-af-btn-label">
                 <span class="obs-af-vector-icon">${ICONS.chart}</span>
-                <span>High Achiever</span>
+                <span id="txt-btn-natural">${t('natural')}</span>
               </span>
-              <span class="obs-af-btn-sub">80/20</span>
+              <span class="obs-af-btn-sub" id="sub-btn-natural">${t('natural_sub')}</span>
             </button>
 
             <button class="obs-af-btn" data-mode="all4">
               <span class="obs-af-btn-label">
                 <span class="obs-af-vector-icon">${ICONS.check}</span>
-                <span>Solid 4s</span>
+                <span id="txt-btn-all4">${t('all4')}</span>
               </span>
-              <span class="obs-af-btn-sub">All 4</span>
+              <span class="obs-af-btn-sub" id="sub-btn-all4">${t('all4_sub')}</span>
             </button>
 
             <button class="obs-af-btn" data-mode="random">
               <span class="obs-af-btn-label">
                 <span class="obs-af-vector-icon">${ICONS.shuffle}</span>
-                <span>Randomize</span>
+                <span id="txt-btn-random">${t('random')}</span>
               </span>
-              <span class="obs-af-btn-sub">1 - 5</span>
+              <span class="obs-af-btn-sub" id="sub-btn-random">${t('random_sub')}</span>
             </button>
           </div>
 
           <div class="obs-af-settings">
             <label class="obs-af-checkbox-row">
               <input type="checkbox" id="obs-opt-dropdowns" ${settings.fillDropdowns ? 'checked' : ''}>
-              <span>Smart fill student drop-downs</span>
+              <span id="txt-opt-dropdowns">${t('opt_dropdowns')}</span>
             </label>
             <label class="obs-af-checkbox-row">
               <input type="checkbox" id="obs-opt-autosave" ${settings.autoSave ? 'checked' : ''}>
-              <span>Auto-click Save/Submit button</span>
+              <span id="txt-opt-autosave">${t('opt_autosave')}</span>
+            </label>
+            <label class="obs-af-checkbox-row">
+              <input type="checkbox" id="obs-opt-floating" ${settings.showFloating ? 'checked' : ''}>
+              <span id="txt-opt-floating">${t('opt_floating')}</span>
             </label>
           </div>
         </div>
@@ -464,24 +631,10 @@
     const panel = document.getElementById('obs-af-popup-panel');
     const closeBtn = document.getElementById('obs-af-close-panel');
     const themeBtn = document.getElementById('obs-af-theme-toggle');
-    const statsText = document.getElementById('obs-af-stats-text');
+    const langBtn = document.getElementById('obs-af-lang-toggle');
     const optDropdowns = document.getElementById('obs-opt-dropdowns');
     const optAutoSave = document.getElementById('obs-opt-autosave');
-
-    function updateStats() {
-      const stats = detectFormStats();
-      if (stats.totalQuestions > 0) {
-        statsText.innerHTML = `
-          <span class="obs-af-info-dot" style="background:#10b981;"></span>
-          <span>Found <b>${stats.radioGroupsCount}</b> ratings & <b>${stats.selectsCount}</b> drop-downs.</span>
-        `;
-      } else {
-        statsText.innerHTML = `
-          <span class="obs-af-info-dot" style="background:#f59e0b;"></span>
-          <span>No survey questions found on this page.</span>
-        `;
-      }
-    }
+    const optFloating = document.getElementById('obs-opt-floating');
 
     launcherBtn.addEventListener('click', () => {
       panel.classList.toggle('obs-af-hidden');
@@ -496,7 +649,13 @@
 
     themeBtn.addEventListener('click', () => {
       settings.theme = settings.theme === 'dark' ? 'light' : 'dark';
-      applyTheme(settings.theme);
+      applySettings();
+      saveSettings();
+    });
+
+    langBtn.addEventListener('click', () => {
+      settings.lang = settings.lang === 'tr' ? 'en' : 'tr';
+      applySettings();
       saveSettings();
     });
 
@@ -510,11 +669,17 @@
       saveSettings();
     });
 
-    function saveSettings() {
-      if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.local) {
-        chrome.storage.local.set({ obs_settings: settings });
+    optFloating.addEventListener('change', (e) => {
+      settings.showFloating = e.target.checked;
+      saveSettings();
+      if (!settings.showFloating) {
+        panel.classList.add('obs-af-hidden');
+        showToast(t('toast_hidden'));
+        setTimeout(() => {
+          container.style.display = 'none';
+        }, 1200);
       }
-    }
+    });
 
     panel.querySelectorAll('.obs-af-btn[data-mode]').forEach((btn) => {
       btn.addEventListener('click', () => {
@@ -523,5 +688,7 @@
         panel.classList.add('obs-af-hidden');
       });
     });
+
+    applySettings();
   }
 })();

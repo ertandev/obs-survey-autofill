@@ -475,3 +475,31 @@
     transform: translateY(0) scale(1);
   }
 }
+
+/* Language Toggle Pill */
+#obs-af-container .obs-af-lang-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  height: 28px !important;
+  padding: 0 8px !important;
+  border-radius: 8px !important;
+  border: 1px solid var(--af-glass-border-subtle) !important;
+  background: var(--af-glass-surface) !important;
+  color: var(--af-text-secondary) !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.04em !important;
+  cursor: pointer !important;
+  transition: all 0.18s cubic-bezier(0.32, 0.72, 0, 1) !important;
+}
+
+#obs-af-container .obs-af-lang-btn:hover {
+  background: var(--af-glass-surface-hover) !important;
+  color: var(--af-text) !important;
+  transform: scale(1.05) !important;
+}
+
+#obs-af-container .obs-af-lang-btn:active {
+  transform: scale(0.95) !important;
+}
